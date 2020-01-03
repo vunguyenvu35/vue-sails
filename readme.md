@@ -43,21 +43,21 @@ $ sudo npm install sails -g
 #### Install modules
 
 ```bash
-$ cd frontend && npm install
-$ cd ../backend && npm install
+$ cd front-end && npm install
+$ cd ../back-end && npm install
 ```
 
 ## Usage
 
 ### Development
 
-`cd backend && sails lift` and then `cd ../frontend && npm run serve`. After that, open
+`cd back-end && sails lift` and then `cd ../front-end && npm run serve`. After that, open
 [localhost:8080](http://localhost:8080) in your browser. Make sure that you start both servers simultaneously.
 
 ### Production
 
 First, you have to build up your Vue.js components and merge them with Sails.js. This can be done with
-`cd frontend && npm run build`. Now do `cd ../backend && NODE_ENV=production node app.js` and then open your browser and go to
+`cd front-end && npm run build`. Now do `cd ../back-end && NODE_ENV=production node app.js` and then open your browser and go to
 [localhost:1337](http://localhost:1337).
 
 ## Commands
