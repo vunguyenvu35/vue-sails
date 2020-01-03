@@ -1,0 +1,10 @@
+{
+  "name": "webapp",
+  "private": true,
+  "version": "0.0.0",
+  "description": "web application",
+  "engines": {
+    "node": "^10.16"
+  },
+  "scripts": {}
+}

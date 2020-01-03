@@ -1,0 +1,10 @@
+[
+  {
+      // Comments are supported
+      "uid": "app-back-end",
+      "append": true,
+      "watch": false,
+      "script": "app.js",
+      "sourceDir":  "D:/projects/demo/nodejs/sailsjs/webapp/back-end"
+  }
+]
