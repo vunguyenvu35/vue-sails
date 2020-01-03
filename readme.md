@@ -1,4 +1,4 @@
-# Vue.js with Sails.js project
+# Vue.js CoreUI with Sails.js project
 
 This project is for those who are new to
 [single-page applications](https://en.wikipedia.org/wiki/Single-page_application) and want to learn through a real
