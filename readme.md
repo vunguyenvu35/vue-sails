@@ -1,87 +1,83 @@
-# Project Title
+# Vue.js with Sails.js project
 
-One Paragraph of project description goes here
+This project is for those who are new to
+[single-page applications](https://en.wikipedia.org/wiki/Single-page_application) and want to learn through a real
+example. Besides that, it should cover most of the features from Sails.js and Vue.js, like a reference book. For a better understanding, you should be aware of [JavaScript ES6 features](http://es6-features.org) and also [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function).
 
-## Getting Started
+To see this project in action, click [here](https://vue-sails-example.herokuapp.com/).
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Features
+
+This project should cover as many features as possible. It should be used as an example for newbies and also serve as
+a reference book. These notable elements are covered.
+
+- Internationalization
+- Unit and functional tests (frontend tests with Cypress.io)
+- Dedicated mobile version
+- Socket.IO usage
+- Local storage plus cookie authentication
+- User input validation
+- Progressive web app support
+- State persistence
+- Natural language processing
+
+## Installation
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+To get started, you need Node.js. It's also recommend to have Sails.js globally installed. If you don't want to have Sails.js globally installed just use `npm run dev`. Finally, install the Node.js modules.
 
-```
-Give examples
-```
+#### Get Node.js
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
+```bash
+$ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+$ sudo apt-get install -y nodejs
 ```
 
-And repeat
+#### Get Sails.js (optional)
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+```bash
+$ sudo npm install sails -g
 ```
 
-### And coding style tests
+#### Install modules
 
-Explain what these tests test and why
-
+```bash
+$ cd frontend && npm install
+$ cd ../backend && npm install
 ```
-Give an example
-```
 
-## Deployment
+## Usage
 
-Add additional notes about how to deploy this on a live system
+### Development
 
-## Built With
+`cd backend && sails lift` and then `cd ../frontend && npm run serve`. After that, open
+[localhost:8080](http://localhost:8080) in your browser. Make sure that you start both servers simultaneously.
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+### Production
 
-## Contributing
+First, you have to build up your Vue.js components and merge them with Sails.js. This can be done with
+`cd frontend && npm run build`. Now do `cd ../backend && NODE_ENV=production node app.js` and then open your browser and go to
+[localhost:1337](http://localhost:1337).
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+## Commands
 
-## Versioning
+### Backend
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+For a complete list see `package.json`.
 
-## Authors
+| Command             | Description                                                                                      |
+|---------------------|--------------------------------------------------------------------------------------------------|
+| `npm run dev`       | Start Sails.js if you didn't install it globally                                                 |
+| `npm run dev:watch` | Start Sails.js with watch mode if you didn't install it globally (this will delete new products)                                 |
+| `npm run test`      | Run all available tests like unit or functional tests                                            |
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+### Frontend
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+For a complete list see `package.json`.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+| Command                   | Description                                                                              |
+|---------------------------|------------------------------------------------------------------------------------------|
+| `npm run serve`           | Start the development server at [localhost:8080](http://localhost:8080)                  |
+| `npm run build`           | Minfiy, uglify and merge the application with Sails.js                                   |
+| `npm run test`            | Run all available tests like unit or functional tests                                    |
