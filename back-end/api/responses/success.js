@@ -25,7 +25,7 @@ module.exports = function success(data, options) {
   // If appropriate, serve data as JSON(P)
   // If views are disabled, revert to json
   if (req.wantsJSON || sails.config.hooks.views === false) {
-    return res.jsonx(data);
+    return res.json(data);
   }
 
   // If second argument is a string, we take that to mean it refers to a view.
@@ -49,7 +49,7 @@ module.exports = function success(data, options) {
     return res.view(options.view, {data: viewData, title: 'OK'});
   } else {
     return res.guessView({data: viewData, title: 'OK'}, function couldNotGuessView() {
-      return res.jsonx(data);
+      return res.json(data);
     });
   }
 
