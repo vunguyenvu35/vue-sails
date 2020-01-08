@@ -14,6 +14,7 @@
     "grunt": "1.0.4",
     "jsonwebtoken": "^8.5.1",
     "jsonx": "^1.0.0",
+    "machinepack-emailaddresses": "^0.4.0",
     "sails": "^1.2.3",
     "sails-hook-grunt": "^4.0.0",
     "sails-hook-orm": "^2.1.1",

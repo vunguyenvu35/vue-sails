@@ -7,43 +7,73 @@
 
 let bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
-
+let Emailaddresses = require('machinepack-emailaddresses');
 
 module.exports = {
   login: async function (req, res) {
 
     let email = req.param('email');
 
-    if(!email) return res.notFound();
+    if (!email) return res.notFound();
 
     let user = await sails.models.user.findOne({
       email: email
     });
 
-    if(!user) return res.notFound();
+    if (!user) return res.notFound();
 
 
     await bcrypt.compare(req.param('password'), user.password);
 
     let token = jwt.sign({user: user.id}, sails.config.jwtSecret, {expiresIn: sails.config.jwtExpires});
 
-    res.cookie('sailsjwt', token, {
+    // provide the token to the client in case they want to store it locally to use in the header (eg mobile/desktop apps)0
+    res.success({
       signed: true,
       domain: 'webapp.com', // always use this in production to whitelist your domain
-      maxAge: sails.config.jwtExpires
+      maxAge: sails.config.jwtExpires,
+      token: token
     });
-
-    // provide the token to the client in case they want to store it locally to use in the header (eg mobile/desktop apps)
-    res.success(token);
   },
 
-  signIn: async function(req, res){
+  register: function (req, res) {
     let email = req.param('email');
     let username = req.param('username');
     let password = req.param('password');
 
-    
+    if (_.isUndefined(email)) {
+      return res.badRequest('An email address is required.');
+    }
+
+    if (_.isUndefined(password)) {
+      return res.badRequest('A password is required.');
+    }
+
+    Emailaddresses.validate({
+      string: email
+    }).exec({
+      error: (error) => {
+        return res.serverError(error);
+      },
+      invalid: () => {
+        return res.badRequest('Doesn\'t look like an email address.');
+      },
+      success: async () => {
+        let param = req.allParams();
+        UserService.createUser(param).then(response => {
+          res.success({
+            data: response
+          });
+        });
+      }
+    });
+  },
+
+  logout: function (req, res) {
+    req.user = null;
+    return res.ok();
   }
+
 
 };
 
