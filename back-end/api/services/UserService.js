@@ -2,10 +2,13 @@
 let CreateUser = require('./user/CreateUser.js');
 
 module.exports = {
-  createUser : async function(inputs ) {
+  createUser: async (inputs) => {
     let result = await CreateUser(inputs).then(response => {
       return response;
     });
     return result;
+  },
+  updateUser: async (data) => {
+
   },
 };

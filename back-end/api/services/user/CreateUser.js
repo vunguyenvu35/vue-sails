@@ -7,6 +7,6 @@ module.exports = async (inputs) => {
   let user = await sails.models.user.findOne({
     email: email
   });
-  
+
   return 1;
 };
