@@ -5,15 +5,19 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-let bcrypt = requires('bcryptjs');
-let jwt = requires('jsonwebtoken');
+let bcrypt = require('bcryptjs');
+let jwt = require('jsonwebtoken');
+
 
 module.exports = {
   login: async function (req, res) {
-    const postData = req.body;
 
-    let user = await Users.findOne({
-      email: req.param('email')
+    let email = req.param('email');
+
+    if(!email) return res.notFound();
+
+    let user = await sails.models.user.findOne({
+      email: email
     });
 
     if(!user) return res.notFound();
@@ -31,5 +35,13 @@ module.exports = {
     // provide the token to the client in case they want to store it locally to use in the header (eg mobile/desktop apps)
     res.success(token);
   },
+
+  signIn: async function(req, res){
+    let email = req.param('email');
+    let username = req.param('username');
+    let password = req.param('password');
+    
+  }
+
 };
 
