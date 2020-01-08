@@ -22,6 +22,7 @@ module.exports = {
 
     if(!user) return res.notFound();
 
+
     await bcrypt.compare(req.param('password'), user.password);
 
     let token = jwt.sign({user: user.id}, sails.config.jwtSecret, {expiresIn: sails.config.jwtExpires});
@@ -40,6 +41,7 @@ module.exports = {
     let email = req.param('email');
     let username = req.param('username');
     let password = req.param('password');
+
     
   }
 
