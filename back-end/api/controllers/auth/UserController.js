@@ -62,7 +62,7 @@ module.exports = {
         let param = req.allParams();
         UserService.createUser(param).then(response => {
           res.success({
-            data: response
+            user: response
           });
         });
       }

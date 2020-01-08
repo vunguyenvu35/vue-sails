@@ -1,12 +1,14 @@
 // api/services/user/CreateUser.js
+let bcrypt = require('bcryptjs');
+
 module.exports = async (inputs) => {
-  let username = inputs.username;
-  let email = inputs.email;
-  let password = inputs.password;
-
-  let user = await sails.models.user.findOne({
-    email: email
-  });
-
-  return 1;
+  let data = {
+    email: inputs.email,
+    username: inputs.username,
+    password: await bcrypt.hash(inputs.password, 10),
+  };
+  return await sails.models.user.create(data)
+    .intercept('E_UNIQUE', () => 'emailAlreadyInUse')
+    .intercept({name: 'UsageError'}, () => 'invalid')
+    .fetch();
 };
