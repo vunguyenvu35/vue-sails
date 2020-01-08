@@ -60,9 +60,17 @@ module.exports = {
       },
       success: async () => {
         let param = req.allParams();
-        UserService.createUser(param).then(response => {
+        UserService.createUser(param).then(user => {
+          const userToken = {
+            user: user.id,
+            username: user.name,
+          };
+          const token = jwt.sign(userToken, sails.config.jwt.jwtSecret, {expiresIn: sails.config.jwt.jwtExpires});
           res.success({
-            user: response
+            user: userToken,
+            token: token,
+            maxAge: sails.config.jwt.jwtExpires,
+            signed: true
           });
         });
       }
