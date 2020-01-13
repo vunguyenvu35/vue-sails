@@ -11,4 +11,7 @@ module.exports = {
   updateUser: async (data) => {
 
   },
+  getUserByEmail: async (email) => {
+
+  }
 };

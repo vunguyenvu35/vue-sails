@@ -60,7 +60,7 @@ module.exports = {
       },
       success: async () => {
         let param = req.allParams();
-        UserService.createUser(param).then(user => {
+        await UserService.createUser(param).then(user => {
           const userToken = {
             user: user.id,
             username: user.name,
